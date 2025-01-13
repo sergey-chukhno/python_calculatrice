@@ -7,33 +7,52 @@ def calculator():
 
   while True: 
     try: 
-      # Initialize result
-      result = float(input('Enter number:').strip())
+      # Initialize 
+      user_input = input("Enter the number or press 'space' to exit: ").strip()
+      if user_input == '': 
+        print('Exiting the calculator. Goodbye!')
+        break
+
+      result = float(user_input)
 
       while True: 
-        operators = ['+', '-', '*', '/']
+        operators = ['+', '-', '*', '/', '=']
         # Select operator
-        operator = input("Enter an operator  (+, -, *, /) or press '=' to get result").strip()
-        if operator == '=': 
-          print(f"The result is: {result}")
+        operator = input("Enter an operator  (+, -, *, /) or press '=' to get result or press 'esc' to exit: ").strip()
+
+        if operator == '':
+          print('Exiting the calculator. Goodbye!')
+          return
+        
         if operator not in operators:
           print("Invalid operator. Please use one of +, -, *, / or press '=' to get result")
         
+        if operator == '=': 
+          print(f"The result is: {result}")
+          continue
+        
+        
         # get the next number 
-        num = float(input("Enter number:").strip())
+        user_input = input("Enter the numer or press 'esc' to exit :").strip()
+        if user_input == '': 
+          print('Exiting the calculator. Goodbye!')
+          break
+
+        num = float(user_input)
+        
 
         # perform operations 
         if operator == '+': 
           result += num
         elif operator == '-': 
-          result -= num
+          result -= num  
         elif operator == '*': 
           result *= num
         elif operator == '/': 
           if num == 0: 
             print('Error: Division by zero is not allowed')
             continue
-          result  /= num 
+          result /= num 
 
     except ValueError:
       print('Invalid input. Please enter numeric values')

@@ -57,8 +57,8 @@ def calculator():
                     result *= num
                 elif operator == '/':
                     if num == 0:
-                        print('Error: Division by zero is not allowed.')
-                        continue
+                      break
+                      continue
                     result /= num
 
                 print("Choose an operator, or press 'space' to exit, or '=' to see the result.")

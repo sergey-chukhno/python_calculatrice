@@ -36,10 +36,20 @@ def calculator():
 
                 # Handle delete last entry
                 if operator == 'd':
-                    if len(history) > 1:
+                    if history:
                         last_entry = history.pop()  # Remove last entry
-                        result = history[-1]  # Update result to the previous value
-                        print(f"Deleted last entry: {last_entry}. Current result: {result}")
+                        result = history[-1] if history else None  # Update result or set to None
+                        if history:
+                            print(f"Deleted last entry: {last_entry}. Current result: {result}")
+                        else:
+                            print(f"Deleted last entry: {last_entry}. No numbers left. Please enter a new number.")
+                            user_input = input("Enter the first number or press 'space' to exit: ").strip()
+                            if user_input == '':
+                                print('Exiting the calculator. Goodbye!')
+                                return
+                            result = float(user_input)
+                            history = [result]
+                            clear_screen()
                     else:
                         print("No entries to delete.")
                     continue

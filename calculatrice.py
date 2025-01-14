@@ -1,42 +1,47 @@
+import re
+
 def calculate():
-    print("Tapez un calcul (exemple : 12 + 34)")
+    print("Tapez un calcul")
+
+    def decompose(calcul):#Parse calcul
+        pat = re.findall(r'\d+|[+\-*/^]', calcul)
+        return pat
+
+    def ordre(pat): #Just left to right for start 
+        result = float(pat[0])
+
+        for i in range (1, len(pat), 2):
+            operator = pat[i]
+            next_num = float(pat[i+1])
+
+            if operator == '+':
+                result += next_num
+            elif operator == '-':
+                result -= next_num
+            elif operator == '*':
+                result *= next_num
+            elif operator == '/':
+                if next_num == 0:
+                    print("Division par 0 impossible.")
+                result /= next_num
+            elif operator == '^':
+                result **= next_num
+            else:
+                print(f"Opérateur non valide")
+
+        return result
+    
+
+
 
     while True:
         enter = input(">> ")
 
         try:
-            elements = enter.split()
-            if len(elements) != 3:
-                print("Erreur : Saisir un calcul sous forme : x + y")
-                continue
-
-            nombre1 = float(elements[0])
-            operator = elements[1]
-            nombre2 = float(elements[2])
-
-            match operator:
-                case "+":
-                    resultat = nombre1 + nombre2
-                case "-":
-                    resultat = nombre1 - nombre2
-                case "*":
-                    resultat = nombre1 * nombre2
-                case "/":
-                    if nombre2 == 0:
-                        print("Erreur : Division par 0 impossible.")
-                        continue
-                    resultat = nombre1 / nombre2
-                case "^":
-                    resultat = nombre1 ** nombre2
-                case _:
-                    print(f"Erreur : Saisir un operateur valide '{operator}'.")
-                    continue
-
-            print(f"Résultat : {resultat}")
-
+           calcul = decompose(enter)
+           resultat = ordre(calcul)
+           print(f"Résultat : {resultat}")
         except ValueError:
-            print("Erreur : Entrer des nombres valides.")
-        except Exception as e:
-            print(f"Erreur : {e}")
+            print(f"Valeur incorrect")
 
 calculate()

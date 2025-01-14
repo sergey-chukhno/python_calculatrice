@@ -18,7 +18,7 @@ def calculator():
       while True: 
         operators = ['+', '-', '*', '/', '=']
         # Select operator
-        operator = input("Enter an operator  (+, -, *, /) or press '=' to get result or press 'esc' to exit: ").strip()
+        operator = input("Enter an operator  (+, -, *, /) or press '=' to get result or press 'space' to exit: ").strip()
 
         if operator == '':
           print('Exiting the calculator. Goodbye!')
@@ -33,7 +33,7 @@ def calculator():
         
         
         # get the next number 
-        user_input = input("Enter the numer or press 'esc' to exit :").strip()
+        user_input = input("Enter the numebr or press 'space' to exit: ").strip()
         if user_input == '': 
           print('Exiting the calculator. Goodbye!')
           break

@@ -2,11 +2,10 @@ import os
 import history
 
 def clear_screen():
-    """Clear the terminal screen."""
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def calculate_expression(expression):
-    """Evaluate a mathematical expression with parentheses and operator precedence."""
+    
     def apply_operator(operators, values):
         operator = operators.pop()
         right = values.pop()
@@ -64,7 +63,6 @@ def calculate_expression(expression):
     return values[0]
 
 def calculator():
-    """Main calculator function."""
     print('Welcome!')
     print('List of available operations: +, -, *, /, (, ), =')
     print('Press "space" to exit')

@@ -42,7 +42,7 @@ def calculate():
 
                 except ZeroDivisionError:
                     print("La division par 0 est interdit")
-                    break
+                    return ["Erreur"]
             
             while "+"in pat:
                 index = pat.index("+")
@@ -96,11 +96,13 @@ def calculate():
         try:
            calcul = decompose(enter)
            result = ordre(calcul)
-           history.append({"calcul": enter, "resultat": result})
+           history.append({"calcul": enter, "resultat": result[0]})
            print(f"\nLe résultat est: {result[0]}")
            print("H - Historique | S - Supp Historique | C - Continuer depuis le resultat | N - Recommencer de 0 | Q - Quitter ")
-        except ValueError:
-            print(f"Valeur incorrect")
+        except Exception as erreur:
+            print(f"Erreur dans le calcul {erreur}")
+            print("H - Historique | S - Supp Historique | C - Continuer depuis le resultat | N - Recommencer de 0 | Q - Quitter ")
+            result = [0]
 
         with open("historique.json", "w") as fichier:
             json.dump(history, fichier, indent=5)

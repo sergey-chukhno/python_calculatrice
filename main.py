@@ -1,10 +1,13 @@
 import os
 from history import * 
 
+# Clear screen
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+# Calculation funct
 def calculate_expression(expression):
+    # Func to apply operator
     def apply_operator(operators, values):
         operator = operators.pop()
         right = values.pop()
@@ -20,6 +23,7 @@ def calculate_expression(expression):
                 raise ZeroDivisionError("Division by zero is not allowed.")
             values.append(left / right)
 
+    # Func to establish priority
     def precedence(op):
         if op in ('+', '-'):
             return 1
@@ -27,6 +31,7 @@ def calculate_expression(expression):
             return 2
         return 0
 
+    # Algorithm to traverse and parse expression
     operators = []
     values = []
     i = 0
@@ -61,6 +66,7 @@ def calculate_expression(expression):
 
     return values[0]
 
+# Func to manage calculator functions (interface)
 def calculator():
 
   while True:
@@ -87,7 +93,7 @@ def calculator():
           continue
 
 
-      if user_input == 's':  # Save history to a new file
+      if user_input == 's':  # Save history to a file
           new_filename = input("\nEnter the new file name (e.g., 'new_history.json'): ").strip()
           if new_filename:
               with open(new_filename, 'w') as file:
@@ -109,16 +115,16 @@ def calculator():
         continue
 
 
-      if user_input == 'd':  # Delete last entry in current calculation
+      if user_input == 'd':  # Delete the last entry in current calculation
           delete_last_from_current_entry()
           continue
 
-      if user_input == 'c':  # Reset the calculator
+      if user_input == 'c':  # Clear entry and history
           reset_history()
           print("Reset complete. Start a new calculation.")
           continue
 
-      if user_input in ['+', '-', '*', '/', '(', ')']:
+      if user_input in ['+', '-', '*', '/', '(', ')']: # Handling operators
           if user_input == '(':
               if not get_current_entry() or get_current_entry()[-1] in ['+', '-', '*', '/', '(']:
                   add_to_current_entry(user_input)

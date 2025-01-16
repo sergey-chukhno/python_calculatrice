@@ -26,7 +26,6 @@ def save_history_to_file():
 
 
 def open_json_file(filename):
-    """Save history file under selected name"""
     try:
         with open(filename, 'r') as file:
             data = json.load(file)
@@ -39,6 +38,15 @@ def open_json_file(filename):
     except Exception as e:
         print(f"An error occurred: {e}")
 
+
+def rename_history_file(new_name):
+    """Rename the history file."""
+    global history_file
+    if os.path.exists(history_file):
+        os.rename(history_file, new_name)
+        history_file = new_name
+    else:
+        print("No history file found to rename.")
 
 # Calculator functions
 def add_to_current_entry(value):

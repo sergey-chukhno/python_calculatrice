@@ -8,7 +8,7 @@ def calculate():
     calc_continue = False
 
     def decompose(calcul):  # Parse the calculation
-        pat = re.findall(r'\d+|[+\-*/^()]', calcul)
+        pat = re.findall(r'\d+\.\d*|\d+|[+\-*/^()]', calcul)
         if calc_continue:
             pat.insert(0, result[0])
         

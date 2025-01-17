@@ -1,4 +1,4 @@
-import os
+import os, time
 from history import * 
 
 # Clear screen
@@ -130,15 +130,18 @@ def calculator():
                   add_to_current_entry(user_input)
               else:
                   print("Invalid input. '(' must follow an operator or be at the start.")
+                  time.sleep(2)
           elif user_input == ')':
               current_entry = get_current_entry()
               if current_entry.count('(') > current_entry.count(')'):
                   add_to_current_entry(user_input)
               else:
                   print("Invalid input. Ensure proper use of '('.")
+                  time.sleep(2)
           else:
               if not get_current_entry():
                   print("Enter a number first.")
+                  time.sleep(2)
                   continue
               add_to_current_entry(user_input)
           continue
@@ -147,6 +150,7 @@ def calculator():
           current_entry = get_current_entry()
           if not current_entry or current_entry[-1] in ['+', '-', '*', '/', '(']:
               print("Complete the expression before pressing '='.")
+              time.sleep(2)
               continue
           try:
               result = calculate_expression(current_entry)
